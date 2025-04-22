@@ -1,3 +1,13 @@
+/**
+ * @fileoverview Illustrator 一键转曲将链接图嵌入文档导出pdf文件
+ * 
+ * @author Hwangzhun <huangzhenmsn@hotmail.com>
+ * @version v0.2
+ * @date 2025/4/21
+ * 
+ * @description 将当前文档的链接图嵌入到文档，并将文字转曲导出pdf文件
+ */
+
 if (confirm("是否执行转曲脚本？")) {
     var doc = app.activeDocument;
 
@@ -38,9 +48,6 @@ if (confirm("是否执行转曲脚本？")) {
         alert("创建轮廓时出错：" + e.message);
     }
 
-    // 4. 保存修改
-    doc.save();
-
     // 5. 储存为 PDF（加 -转曲 后缀，不弹窗）
     var originalName = doc.name.replace(/\.[^\.]+$/, '');
     var folder = doc.path;
@@ -53,9 +60,6 @@ if (confirm("是否执行转曲脚本？")) {
     pdfOptions.artBoardClipping = false; // 关闭裁切，保存画板外的内容
 
     doc.saveAs(pdfFile, pdfOptions); // 保存为 PDF
-
-    // 6. 可选：关闭 PDF 文档（如果仍然开启）
-    //doc.close(SaveOptions.DONOTSAVECHANGES); // 关闭 .ai 文件，无需保存
 
     alert("脚本执行完成！");
 } else {
